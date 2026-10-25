@@ -1,0 +1,30 @@
+Modchart Studio · Codename Engine
+=================================
+Abre index.html con doble clic (Chrome, Edge o Firefox). Si tu navegador bloquea los audios
+al abrirlo como archivo, sirve la carpeta con:  python -m http.server  y entra a http://localhost:8000
+
+Estructura
+  index.html            interfaz (cabecera, paleta, vista previa, línea de tiempo, panel)
+  css/style.css         estilos (tema oscuro #333333)
+  js/datos.js           efectos (FX), easings, objetivos, estado y guardado local
+  js/simulacion.js      simulación de los modificadores NMV y matemática 3D (rotación + perspectiva)
+  js/vista-previa.js    escenario 1280x720, skin, disposición centrada y dibujo
+  js/linea-tiempo.js    línea de tiempo y arrastre de bloques
+  js/inspector.js       panel de propiedades
+  js/codigo-hx.js       generador del script .hx (incluye su propio "modManager"; solo emite los modificadores que uses)
+  js/audio-chart.js     importar hasta 3 .ogg, chart y meta.json
+  js/principal.js       controles, atajos y bucle de reproducción
+  assets/default.png    skin original de strums y notas (default.xml = atlas)
+
+Los scripts se cargan en ese orden (comparten variables globales); si añades uno nuevo, ponlo en index.html después de los que usa.
+
+Modificadores incluidos (nombres de la wiki de Nightmare Vision)
+  Posición: transformX/Y/Z, opponentSwap, flip, invert
+  Movimiento: drunk(+Speed/Period/Offset), tipsy(+Speed/Offset), tipZ(+Speed/Offset), beat
+  Aceleración: boost, wave, brake
+  Rotación 3D (grados): localrotateX/Y/Z, centerrotateX/Y/Z
+  Gráficos: confusion, noteAngle, receptorAngle
+  Visibilidad: alpha (1 = invisible), stealth, dark, hidden(+Offset), sudden(+Offset), blink
+  Escala: mini, miniX, miniY, receptorScaleX/Y, noteScaleX/Y (1 = normal)
+  Ruta: reverse, cross, alternate, centered, infinite, receptorScroll
+Notas: transformZ 1 = 1000 px; tipZ 1 = 500 px. Las rotaciones van en grados (NMV las usa en radianes).

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Modchart Studio · Codename Engine</title>
+<link rel="stylesheet" href="css/style.css">
+</head><body>
+<header>
+<h1>Modchart Studio<small>Codename Engine</small></h1>
+<button class="pr" id="bp" title="Espacio">▶ Reproducir</button><button id="bs">⏮ Inicio</button>
+<label>BPM <input id="bpm" type="number" min="40" max="400"></label>
+<label>Steps/beat <input id="spb" type="number" min="1" max="16"></label>
+<label>Steps totales <input id="len" type="number" min="16" max="4000" step="16"></label>
+<label>Scroll <select id="ds"><option value="0">Upscroll</option><option value="1">Downscroll</option></select></label>
+<label>Disposición <select id="lay"><option value="0">Centrado</option><option value="1">Middlescroll</option></select></label>
+<label>Velocidad <input id="spd" type="number" min=".5" step=".1" value="2.5"></label>
+<span class="sp"></span>
+<label style="cursor:pointer;border:1px solid var(--b);border-radius:6px;padding:5px 9px;background:var(--p2)">Abrir chart / meta / proyecto<input id="fi" type="file" accept=".json" multiple hidden></label>
+<button id="bg">Guardar proyecto</button>
+</header>
+<main>
+<aside id="pal"><h2>Efectos NMV · clic para añadir en la cabeza de lectura</h2><input id="fq" type="search" placeholder="Buscar efecto…" style="width:100%;margin-bottom:6px"><div id="fxl"></div>
+<h2 style="margin-top:14px">Audio .ogg · hasta 3, opcionales</h2>
+<label class="up">Audio 1<input type="file" accept=".ogg,audio/*" hidden onchange="setAudio(0,this.files[0])"><small id="an0">Sin cargar</small></label>
+<label class="up">Audio 2<input type="file" accept=".ogg,audio/*" hidden onchange="setAudio(1,this.files[0])"><small id="an1">Sin cargar</small></label>
+<label class="up">Audio 3<input type="file" accept=".ogg,audio/*" hidden onchange="setAudio(2,this.files[0])"><small id="an2">Sin cargar</small></label></aside>
+<section id="mid">
+<div id="pv"><canvas id="cv"></canvas><div id="tm"></div></div>
+<div id="tlw"><div id="tb"><span class="mu">Zoom</span><input type="range" id="zm" min="6" max="40" value="14"><span class="mu" id="hint">Arrastra bloques para moverlos · clic en la regla para saltar</span></div>
+<div id="tl"><div id="lab"><div>Oponente</div><div>Jugador</div><div>Cámara</div></div>
+<div id="sc"><div id="tr"><div id="ru"></div><div class="ln" id="l0"></div><div class="ln" id="l1"></div><div class="ln" id="l2"></div><div id="ph"></div></div></div></div></div>
+</section>
+<aside id="side"><div class="tabs"><button id="t1" class="on">Propiedades</button><button id="t2">Código .hx</button></div>
+<div id="ins"></div>
+<div id="code"><pre id="pre"></pre><div class="r2"><button id="bc">Copiar</button><button id="bd" class="pr">Descargar .hx</button></div><p class="mu">Guárdalo como <b>songs/&lt;canción&gt;/scripts/modchart.hx</b></p></div>
+</aside>
+</main>
+<script src="js/datos.js"></script>
+<script src="js/simulacion.js"></script>
+<script src="js/vista-previa.js"></script>
+<script src="js/linea-tiempo.js"></script>
+<script src="js/inspector.js"></script>
+<script src="js/codigo-hx.js"></script>
+<script src="js/audio-chart.js"></script>
+<script src="js/principal.js"></script>
+</body></html>
