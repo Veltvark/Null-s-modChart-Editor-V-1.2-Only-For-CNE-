@@ -1,4 +1,3 @@
-/* ---------- generador de código Codename (HScript) con modificadores estilo NMV ---------- */
 const DEPS={drunk:['drunkSpeed','drunkPeriod','drunkOffset'],tipsy:['tipsySpeed','tipsyOffset'],tipZ:['tipZSpeed','tipZOffset'],hidden:['hiddenOffset'],sudden:['suddenOffset']};
 function usedMods(){const u=new Set();S.ev.forEach(e=>{if(!FX[e.t].cam){u.add(e.t);(DEPS[e.t]||[]).forEach(x=>u.add(x))}});return u}
 function head(u){
@@ -6,11 +5,16 @@ function head(u){
  const rTerms=[h('reverse')?'m.reverse':'',h('cross')?'(col == 1 || col == 2 ? m.cross : 0)':'',h('alternate')?'(col % 2 == 1 ? m.alternate : 0)':''].filter(Boolean).join(' + ')||'0.0';
  const blank=[...u].map(k=>k+': '+(FX[k].base||0)).join(', ');
  const LRX=v('localrotateX','0'),LRY=v('localrotateY','0'),LRZ=v('localrotateZ','0'),CRX=v('centerrotateX','0'),CRY=v('centerrotateY','0'),CRZ=v('centerrotateZ','0');
- return `var S = [];            // strums: 0-3 oponente, 4-7 jugador
+ return `
+/*
+this was made with Null's ModChart Editor (v1.2)
+tysm claude :3!!
+*/
+var S = [];
 var bx = []; var by = []; var bsv = [];
-var M = [];            // valor de cada modificador por strum (como el modManager de NMV)
-var ds = false;        // downscroll del jugador
-var fov = 640;         // camara de perspectiva en el centro (640x360)
+var M = [];
+var ds = false;
+var fov = 640;
 var tm = 0.0; var bt = 0.0;
 
 function postCreate() {
@@ -26,7 +30,6 @@ function blank() { return {${blank}}; }
 
 function sec(st) { return st * Conductor.stepCrochet / 1000; }
 
-// equivalente a modManager.queueEase / queueSet: anima el modificador desde su valor actual
 function ez(ids, k, v, st, ease) {
     for (i in ids) {
         if (st <= 0) { Reflect.setField(M[i], k, v); continue; }
@@ -45,7 +48,6 @@ function rot(x, y, z, a, b, c) {
     return [x, y, z];
 }
 
-// posicion [x, y, perspectiva, angulo, escalaX, escalaY, alpha] de un receptor (dist = 0) o de una nota a "dist" px
 function pth(i, dist, isNote) {
     var m = M[i];
     var col = i % 4; var f = i < 4 ? 0 : 1;
@@ -90,7 +92,6 @@ function postUpdate(elapsed) {
     tm = Conductor.songPosition / 1000;
     bt = Conductor.songPosition / Conductor.crochet;
     var dg = ds ? -1 : 1;
-    // notas: la distancia al receptor la da el motor (se calcula antes de mover los strums)
     for (g in 0...2) {
         for (n in strumLines.members[g].notes.members) {
             if (n == null || !n.exists || !n.alive || n.isSustainNote) continue;
